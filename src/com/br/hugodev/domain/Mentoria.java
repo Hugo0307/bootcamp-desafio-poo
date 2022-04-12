@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Mentoria extends Atividade {
 
-    private LocalDateTime dataMentoria = LocalDateTime.now().plusDays(10);
+    private LocalDateTime dataMentoria;
 
     @Override
     public double calcularXp() {

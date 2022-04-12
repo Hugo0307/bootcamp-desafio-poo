@@ -1,6 +1,7 @@
 package com.br.hugodev.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -10,8 +11,8 @@ public class Bootcamp {
 
     private String nome;
     private String descricao;
-    private LocalDateTime dataInicial = LocalDateTime.now();
-    private LocalDateTime dataFinal = dataInicial.plusDays(45);
+    private LocalDate dataInicial = LocalDate.now();
+    private LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new HashSet<>();
     private Set<Atividade> atividades = new LinkedHashSet<>();
 
@@ -31,19 +32,19 @@ public class Bootcamp {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDataInicial() {
+    public LocalDate getDataInicial() {
         return dataInicial;
     }
 
-    public void setDataInicial(LocalDateTime dataInicial) {
+    public void setDataInicial(LocalDate dataInicial) {
         this.dataInicial = dataInicial;
     }
 
-    public LocalDateTime getDataFinal() {
+    public LocalDate getDataFinal() {
         return dataFinal;
     }
 
-    public void setDataFinal(LocalDateTime dataFinal) {
+    public void setDataFinal(LocalDate dataFinal) {
         this.dataFinal = dataFinal;
     }
 
@@ -61,6 +62,18 @@ public class Bootcamp {
 
     public void setAtividades(Set<Atividade> atividades) {
         this.atividades = atividades;
+    }
+
+    @Override
+    public String toString() {
+        return "Bootcamp{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataInicial=" + dataInicial +
+                ", dataFinal=" + dataFinal +
+                ", devsInscritos=" + devsInscritos +
+                ", atividades=" + atividades +
+                '}';
     }
 
     @Override

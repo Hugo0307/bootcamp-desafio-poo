@@ -2,6 +2,7 @@ package com.br.hugodev.domain;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
@@ -11,15 +12,25 @@ public class Dev {
     private Set<Atividade> atividadesConcluidas = new LinkedHashSet<>();
 
     public void inscreverBootcamp(Bootcamp bootcamp) {
-
+        this.atividadesInscritas.addAll(bootcamp.getAtividades());
+        bootcamp.getDevsInscritos().add(this);
     }
 
     public void progredir() {
-
+        Optional<Atividade> atividade = this.atividadesInscritas.stream().findFirst();
+        if(atividade.isPresent()) {
+            this.atividadesConcluidas.add(atividade.get());
+            this.atividadesInscritas.remove(atividade.get());
+        } else {
+            System.err.println("Você não está inscrito em nenhuma atividade!");
+        }
     }
 
     public double calcularTotalXp() {
-        return 0;
+        return this.atividadesConcluidas
+                .stream()
+                .mapToDouble(atividade -> atividade.calcularXp())
+                .sum();
     }
 
     public String getNome() {
@@ -46,7 +57,14 @@ public class Dev {
         this.atividadesConcluidas = atividadesConcluidas;
     }
 
-
+    @Override
+    public String toString() {
+        return "Dev{" +
+                "nome='" + nome + '\'' +
+                ", atividadesInscritas=" + atividadesInscritas +
+                ", atividadesConcluidas=" + atividadesConcluidas +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {
