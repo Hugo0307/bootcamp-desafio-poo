@@ -78,4 +78,19 @@ public class Dev {
     public int hashCode() {
         return Objects.hash(nome, atividadesInscritas, atividadesConcluidas);
     }
+
+    public void exibirAtividades() {
+        if (getNome() == null) System.out.println("Dev: ");
+        else System.out.println("Dev: " + getNome());
+
+        System.out.println("--- Atividades inscritas ---");
+        getAtividadesInscritas().forEach(
+                atividade -> System.out.println("- " + atividade.getTitulo()));
+        System.out.println("Total atividades inscritas: " + getAtividadesInscritas().size());
+        System.out.println("--- Atividades concluídas ---");
+        getAtividadesConcluidas().forEach(
+                atividade -> System.out.println("* " + atividade.getTitulo()));
+        System.out.println("Total atividades concluídas: " + getAtividadesConcluidas().size());
+        System.out.println();
+    }
 }

@@ -1,7 +1,9 @@
-import com.br.hugodev.domain.*;
+import com.br.hugodev.domain.Bootcamp;
+import com.br.hugodev.domain.Curso;
+import com.br.hugodev.domain.Dev;
+import com.br.hugodev.domain.Mentoria;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Main {
 
@@ -16,9 +18,6 @@ public class Main {
         curso2.setTitulo("Java e POO");
         curso2.setDescricao("Aprenda Java e o Paradigma Orientação a Objetos");
         curso2.setCargaHoraria(16);
-
-//        System.out.println("Curso: " + curso1);
-//        System.out.println("Curso: " + curso2);
 
         Mentoria mentoria = new Mentoria();
         mentoria.setTitulo("Aprenda na prática POO");
@@ -40,33 +39,10 @@ public class Main {
         dev2.setNome("Hugo Almeida");
         dev2.inscreverBootcamp(bootcamp);
 
-        System.out.println("====== BOOTCAMP ======");
-        System.out.println("Nome: " + bootcamp.getNome());
-        System.out.println("Data de início: " + bootcamp.getDataInicial().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        System.out.println("Data de término: " + bootcamp.getDataFinal().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-        System.out.println("Atividades do Bootcamp:");
-        bootcamp.getAtividades()
-                .forEach(atividade -> System.out.println(
-                        atividade.
-                        getClass().getSimpleName()
-                        + ": "
-                        + atividade.getTitulo()));
-        System.out.println();
+        bootcamp.imprimirInformacoesBootcamp();
 
-        System.out.println("====== DEVS INSCRITOS ======");
-        System.out.println("Nome: " + dev1.getNome());
-        System.out.println("Atividades inscritas: ");
-        dev1.getAtividadesInscritas().forEach(atividade -> System.out.println(atividade.getTitulo()));
-        System.out.println("Atividades concluídas: ");
-        dev1.getAtividadesConcluidas().forEach(atividade -> System.out.println(atividade.getTitulo()));
-        System.out.println();
-        System.out.println("Nome: " + dev2.getNome());
-        System.out.println("Atividades inscritas: ");
-        dev1.getAtividadesInscritas().forEach(atividade -> System.out.println(atividade.getTitulo()));
-        System.out.println("Atividades concluídas: ");
-        dev2.getAtividadesConcluidas().forEach(atividade -> System.out.println(atividade.getTitulo()));
-        System.out.println();
-
+        dev1.exibirAtividades();
+        dev2.exibirAtividades();
 
     }
 }

@@ -1,7 +1,6 @@
 package com.br.hugodev.domain;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -88,4 +87,22 @@ public class Bootcamp {
     public int hashCode() {
         return Objects.hash(nome, descricao, dataInicial, dataFinal, devsInscritos, atividades);
     }
+
+    public void imprimirInformacoesBootcamp() {
+        System.out.println("====== BOOTCAMP ======");
+        System.out.println("Nome: " + getNome());
+        System.out.println("Data de início: " + Utils.formatarData(getDataInicial()));
+        System.out.println("Data de término: " + Utils.formatarData(getDataFinal()));
+        System.out.println("** Atividades do Bootcamp:");
+        if(getAtividades().isEmpty()) System.out.println("Nenhuma atividade cadastrada neste bootcamp.");
+        else getAtividades().forEach(
+                atividade -> System.out.println(
+                        atividade.getClass().getSimpleName()
+                                + ": " + atividade.getTitulo()));
+        System.out.println("--- Devs inscritos: ---");
+        if(getDevsInscritos().isEmpty()) System.out.println("Não há devs inscritos.");
+        else getDevsInscritos().forEach(dev -> System.out.println("- Nome: " + dev.getNome()));
+        System.out.println();
+    }
+
 }
